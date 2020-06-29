@@ -1,0 +1,22 @@
+
+Project Structure:
+    Main classes:
+        /src/main/java/client - Sample client
+        /src/main/java/server - CanvasServer is the entry point for the application.
+    Test classes:
+        /src/test/java/ - Unit tests
+
+---------------------------------------------------------------------------------------------
+There are two steps to run the frontend server.
+
+1. Build Maven package and docker image (Note: Maven build can be optimized to use a local repository to cache jars)
+    Step 1: Use base image to run first stage of the build using a desired version of Maven. This runs the unit tests
+            and builds final package.
+
+    Step 2: The second part of the file defines how the built jar is assembled into the final output image.
+
+    Command to execute : docker build . -t frontappserver
+
+2. Run application
+
+    Command to execute : docker run --rm -it -p 8124:8124  frontappserver:latest
